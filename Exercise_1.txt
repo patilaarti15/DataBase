@@ -1,0 +1,317 @@
+Exercise 1
+SQL Exercise 1
+
+
+1)
+Create table SEMP (EMPNO CHAR(4),EMPNAME CHAR(20),BASIC FLOAT(9,2),DEPTNO CHAR(2),DEPTHEAD CHAR(4));
++----------+------------+------+-----+---------+-------+
+| Field    | Type       | Null | Key | Default | Extra |
++----------+------------+------+-----+---------+-------+
+| EMPNO    | char(4)    | YES  |     | NULL    |       |
+| EMPNAME  | char(20)   | YES  |     | NULL    |       |
+| BASIC    | float(9,2) | YES  |     | NULL    |       |
+| DEPTNO   | char(2)    | YES  |     | NULL    |       |
+| DEPTHEAD | char(4)    | YES  |     | NULL    |       |
++----------+------------+------+-----+---------+-------+
+
+2)
+Create table SDEPT(DEPTNO CHAR(2),DEPTNAME CHAR(15));
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| DEPTNO   | char(2)  | YES  |     | NULL    |       |
+| DEPTNAME | char(15) | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+
+
+3)
+Insert into the SDEPT table the following values:-
++--------+-------------+
+| DEPTNO | DEPTNAME    |
++--------+-------------+
+| 10     | Development |
+| 20     | Training    |
++--------+-------------+
+
+4. Insert into the SEMP table the following values:-
++-------+---------+---------+--------+----------+
+| EMPNO | EMPNAME | BASIC   | DEPTNO | DEPTHEAD |
++-------+---------+---------+--------+----------+
+| 0001  | SUNIL   | 6000.00 | 10     | NULL     |
+| 0002  | HIREN   | 8000.00 | 20     | NULL     |
+| 0003  | ALI     | 4000.00 | 10     | 0001     |
+| 0004  | GEORGE  | 6000.00 | NULL   | 0001     |
++-------+---------+---------+--------+----------+
+
+
+
+Create S, P, J, SPJ tables as specified below and insert a few rows in each table:-
+
+1)SUPPLIER
+
+create table s
+        (
+         `s#`char(4),
+         Sname varchar(10),
+         status char(10),
+         city varchar(10)
+        );
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| s#     | char(4)     | YES  |     | NULL    |       |
+| Sname  | varchar(10) | YES  |     | NULL    |       |
+| status | char(10)    | YES  |     | NULL    |       |
+| city   | varchar(10) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+
+insert into s values('s1','jack','10','london'),
+                          ('s2','seer','30','LA'),
+                          ('s3','ryan','20','bombay'),
+                          ('s4','alex','50','budapest'),
+                          ('s5','max','40','paris'),
+                          ('s6','stuart','70','athens');
++------+--------+--------+----------+
+| s#   | Sname  | status | city     |
++------+--------+--------+----------+
+| s1   | jack   | 10     | london   |
+| s2   | seer   | 30     | LA       |
+| s3   | ryan   | 20     | bombay   |
+| s4   | alex   | 50     | budapest |
+| s5   | max    | 40     | paris    |
+| s6   | stuart | 70     | athens   |
++------+--------+--------+----------+
+
+2)PARTS
+
+create table p
+        (
+         `p#` char(4),
+          Pname varchar(10),
+          color varchar(10),
+          weight float(7,2),
+          city varchar(10)
+        );
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| p#     | char(4)     | YES  |     | NULL    |       |
+| Pname  | varchar(10) | YES  |     | NULL    |       |
+| color  | varchar(10) | YES  |     | NULL    |       |
+| weight | float(7,2)  | YES  |     | NULL    |       |
+| city   | varchar(10) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+
+insert into p values ('p1','a','red',13,'bombay'),
+                          ('p2','b','black',20,'LA'),
+                          ('p4','d','blue',10,'london'),
+                          ('p5','f','silver',17,'paris'),
+                          ('p3','c','green',19,'london');
++------+-------+--------+--------+--------+
+| p#   | Pname | color  | weight | city   |
++------+-------+--------+--------+--------+
+| p1   | a     | red    |  13.00 | bombay |
+| p2   | b     | black  |  20.00 | LA     |
+| p4   | d     | blue   |  10.00 | london |
+| p5   | f     | silver |  17.00 | paris  |
+| p3   | c     | green  |  19.00 | london |
++------+-------+--------+--------+--------+
+
+3) PROJECTS
+
+create table j
+       (
+        `j#` char(4),
+         jname varchar(10),
+         city varchar(10)
+       );
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| j#    | char(4)     | YES  |     | NULL    |       |
+| jname | varchar(10) | YES  |     | NULL    |       |
+| city  | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+insert into j values ('j1','q','paris'),
+                          ('j2','s','LA'),
+                          ('j4','u','bombay'),
+                          ('j5','w','LA'),
+                          ('j3','t','athens');
++------+-------+--------+
+| j#   | jname | city   |
++------+-------+--------+
+| j1   | q     | paris  |
+| j2   | s     | LA     |
+| j4   | u     | bombay |
+| j5   | w     | LA     |
+| j3   | t     | athens |
++------+-------+--------+
+
+
+4)SUPPLIER-PARTS-PROJECT
+create table spj
+       ( 
+        `s#` char(4),
+        `p#` char(4),
+        `j#` char(4),
+        qty float(7,2)
+       ); 
++-------+------------+------+-----+---------+-------+
+| Field | Type       | Null | Key | Default | Extra |
++-------+------------+------+-----+---------+-------+
+| s#    | char(4)    | YES  |     | NULL    |       |
+| p#    | char(4)    | YES  |     | NULL    |       |
+| j#    | char(4)    | YES  |     | NULL    |       |
+| qty   | float(7,2) | YES  |     | NULL    |       |
++-------+------------+------+-----+---------+-------+
+insert into  spj values ('s1','p2','j1','2'),
+                             ('s2','p3','j5','6'),
+                             ('s3','p1','j2','3'),
+                             ('s6','p5','j4','8'),
+                             ('s4','p2','j3','10');
++------+------+------+-------+
+| s#   | p#   | j#   | qty   |
++------+------+------+-------+
+| s1   | p2   | j1   |  2.00 |
+| s2   | p3   | j5   |  6.00 |
+| s3   | p1   | j2   |  3.00 |
+| s6   | p5   | j4   |  8.00 |
+| s4   | p2   | j3   | 10.00 |
++------+------+------+-------+
+
+
+5. Display all the data from the S table.
+
+select * from s;
++------+--------+--------+----------+
+| s#   | Sname  | status | city     |
++------+--------+--------+----------+
+| s1   | jack   | 10     | london   |
+| s2   | seer   | 30     | LA       |
+| s3   | ryan   | 20     | bombay   |
+| s4   | alex   | 50     | budapest |
+| s5   | max    | 40     | paris    |
+| s6   | stuart | 70     | athens   |
++------+--------+--------+----------+
+
+6. Display only the S# and SNAME fields from the S table.
+select `s#`,sname from s;
++------+--------+
+| s#   | sname  |
++------+--------+
+| s1   | jack   |
+| s2   | seer   |
+| s3   | ryan   |
+| s4   | alex   |
+| s5   | max    |
+| s6   | stuart |
++------+--------+
+
+
+7. Display the PNAME and COLOR from the P table for the CITY=”London”.
+select Pname,color from p where city='london';
++-------+-------+
+| Pname | color |
++-------+-------+
+| d     | blue  |
+| c     | green |
++-------+-------+
+
+8. Display all the Suppliers from London.
+select * from s where CITY='London';
++------+-------+--------+--------+
+| s#   | Sname | status | city   |
++------+-------+--------+--------+
+| s1   | jack  | 10     | london |
++------+-------+--------+--------+
+
+9. Display all the Suppliers from Paris or Athens.
+select * from s where city='london' or city='Athens';
++------+--------+--------+--------+
+| s#   | Sname  | status | city   |
++------+--------+--------+--------+
+| s1   | jack   | 10     | london |
+| s6   | stuart | 70     | athens |
++------+--------+--------+--------+
+
+10. Display all the Projects in Athens.
+select *from j where city='Athens';
++------+-------+--------+
+| j#   | jname | city   |
++------+-------+--------+
+| j3   | t     | athens |
++------+-------+--------+
+
+11. Display all the Part names with the weight between 12 and 14 (inclusive of both).
+select * from p where weight>=12 and weight<=14;
++------+-------+-------+--------+--------+
+| p#   | Pname | color | weight | city   |
++------+-------+-------+--------+--------+
+| p1   | a     | red   |  13.00 | bombay |
++------+-------+-------+--------+--------+
+
+12. Display all the Suppliers with a Status greater than or equal to 20.S 
+select * from S where Status>=20;
++------+--------+--------+----------+
+| s#   | Sname  | status | city     |
++------+--------+--------+----------+
+| s2   | seer   | 30     | LA       |
+| s3   | ryan   | 20     | bombay   |
+| s4   | alex   | 50     | budapest |
+| s5   | max    | 40     | paris    |
+| s6   | stuart | 70     | athens   |
++------+--------+--------+----------+
+
+13. Display all the Suppliers except the Suppliers from London.
+select * from s where city!='london';
++------+--------+--------+----------+
+| s#   | Sname  | status | city     |
++------+--------+--------+----------+
+| s2   | seer   | 30     | LA       |
+| s3   | ryan   | 20     | bombay   |
+| s4   | alex   | 50     | budapest |
+| s5   | max    | 40     | paris    |
+| s6   | stuart | 70     | athens   |
++------+--------+--------+----------+
+
+14. Display only the Cities from where the Suppliers come from.
+select city from s;
++----------+
+| city     |
++----------+
+| london   |
+| LA       |
+| bombay   |
+| budapest |
+| paris    |
+| athens   |
++----------+
+
+15. Assuming that the Part Weight is in GRAMS, display the same in
+MILLIGRAMS and KILOGRAMS. 
+
+select weight*1000 from p;
++-------------+
+| weight*1000 |
++-------------+
+|    13000.00 |
+|    20000.00 |
+|    10000.00 |
+|    17000.00 |
+|    19000.00 |
++-------------+
+select weight/1000 from p;
++-------------+
+| weight/1000 |
++-------------+
+|    0.013000 |
+|    0.020000 |
+|    0.010000 |
+|    0.017000 |
+|    0.019000 |
++-------------+
+
+
+
+
