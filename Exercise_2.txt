@@ -1,0 +1,63 @@
+Exercise 
+SQL Exercise 2
+1. Display the Supplier table in the descending order of CITY.
+Select * from s order by City desc;
++------+--------+--------+----------+
+| s#   | Sname  | status | city     |
++------+--------+--------+----------+
+| s5   | max    | 40     | paris    |
+| s1   | jack   | 10     | london   |
+| s2   | seer   | 30     | LA       |
+| s4   | alex   | 50     | budapest |
+| s3   | ryan   | 20     | bombay   |
+| s6   | stuart | 70     | athens   |
++------+--------+--------+----------+
+
+2. Display the Part Table in the ascending order of CITY and within the city in
+the ascending order of Part names.
+
+select * from p order by pname,city;
++------+-------+--------+--------+--------+
+| p#   | Pname | color  | weight | city   |
++------+-------+--------+--------+--------+
+| p1   | a     | red    |  13.00 | bombay |
+| p2   | b     | black  |  20.00 | LA     |
+| p3   | c     | green  |  19.00 | london |
+| p4   | d     | blue   |  10.00 | london |
+| p5   | f     | silver |  17.00 | paris  |
++------+-------+--------+--------+--------+
+
+3. Display all the Suppliers with a status between 10 and 20.
+select * from s where status between 10 and 20;
++------+-------+--------+--------+
+| s#   | Sname | status | city   |
++------+-------+--------+--------+
+| s1   | jack  | 10     | london |
+| s3   | ryan  | 20     | bombay |
++------+-------+--------+--------+
+
+4. Display all the Parts and their Weight, which are not in the range of 10 and 15.
+select * from P where weight not between 10 and 15;
++------+-------+--------+--------+--------+
+| p#   | Pname | color  | weight | city   |
++------+-------+--------+--------+--------+
+| p2   | b     | black  |  20.00 | LA     |
+| p5   | f     | silver |  17.00 | paris  |
+| p3   | c     | green  |  19.00 | london |
++------+-------+--------+--------+--------+
+
+5. Display all the Part names starting with the letter ‘S’.
+select * from p where pname like 'S%';
+Empty set
+
+6. Display all the Suppliers, belonging to cities starting with the letter ‘L’.
+select * from S where city like 'L%';
++------+-------+--------+--------+
+| s#   | Sname | status | city   |
++------+-------+--------+--------+
+| s1   | jack  | 10     | london |
+| s2   | seer  | 30     | LA     |
++------+-------+--------+--------+
+
+7. Display all the Projects, with the third letter in JNAME as ‘n’. 
+SELECT * FROM J WHERE Jname like '__n%';
