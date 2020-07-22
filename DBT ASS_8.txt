@@ -26,15 +26,15 @@ FROM orders;
 Put the output in this form:
 For the city (city), the highest rating is : (rating).
 
-select City, max(Rating) as "the highest rating is : " from CUSTOMERS group by City;
-+---------+--------------------------+
-| City    | the highest rating is :  |
-+---------+--------------------------+
-| London  |                      100 |
-| rome    |                      200 |
-| SanJose |                      300 |
-| Berlin  |                      300 |
-+---------+--------------------------+
+select concat("For the city ",city," the hightest rating is: ",max(rating),".") as NewTable from customers group by city;
++---------------------------------------------------+
+| NewTable                                          |
++---------------------------------------------------+
+| For the city London the hightest rating is: 100.  |
+| For the city rome the hightest rating is: 200.    |
+| For the city SanJose the hightest rating is: 300. |
+| For the city Berlin the hightest rating is: 300.  |
++---------------------------------------------------+
 
 3) Write a query that lists customers in descending order of rating. Output the rating
 field first, followed by the customer’s name and number.
