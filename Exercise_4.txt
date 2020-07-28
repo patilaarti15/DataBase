@@ -1,0 +1,126 @@
+SQL Exercise 4
+1. Display the minimum Status in the Supplier table.
+
+select min(Status) from S;
++-------------+
+| min(Status) |
++-------------+
+| 10          |
++-------------+
+
+2. Display the maximum Weight in the Parts table.
+
+select max(Weight) from P;
++-------------+
+| max(Weight) |
++-------------+
+|       20.00 |
++-------------+
+
+3. Display the average Weight of the Parts.
+
+select avg(Weight) from PARTS;
++-------------+
+| avg(Weight) |
++-------------+
+|   15.800000 |
++-------------+
+ 
+4. Display the total Quantity sold for part ‘P1’.
+
+select sum(Qty) from Spj 
+	where `P#` = 'P1';
++------+
+| Qty  |
++------+
+| 3.00 |
++------+
+
+5. Display the total Quantity sold for each part.
+
+select `P#`, Qty totalQuantity from Spj;
++------+---------------+
+| P#   | totalQuantity |
++------+---------------+
+| p2   |          2.00 |
+| p3   |          6.00 |
+| p1   |          3.00 |
+| p5   |          8.00 |
+| p2   |         10.00 |
++------+---------------+
+
+
+6. Display the average Quantity sold for each part.
+
+select avg(Qty) from Spj;
++----------+
+| avg(Qty) |
++----------+
+| 5.800000 |
++----------+
+
+7. Display the maximum Quantity sold for each part, provided the maximum Quantity
+is greater than 800.
+
+select `P#`, max(Qty) from Spj 
+	where Qty > 800;
+
+8. Display the Status and the count of Suppliers with that Status.
+
+select status and count('#s') from s group by status;
++------------------------+
+| status and count('#s') |
++------------------------+
+|                      1 |
+|                      1 |
+|                      1 |
+|                      1 |
+|                      1 |
+|                      1 |
++------------------------+
+
+9. Display the count of Projects going on in different cities.
+
+select count(distinct(City)) from j;
++-----------------------+
+| count(distinct(City)) |
++-----------------------+
+|                     4 |
++-----------------------+
+
+10. What is the difference between COUNT(Status) and COUNT(*) ?
+
+select count(Status) - count(*) from S;
++--------------------------+
+| count(Status) - count(*) |
++--------------------------+
+|                        0 |
++--------------------------+
+
+11. Display the Status and the Count of Suppliers with that Status in the following format
+as shown below:-
+
+Status Count
+Ten 1
+Twenty 2
+Thirty 3 
+
+select case  
+when Status = '10' then 'Ten'
+when Status = '20' then 'Twenty'
+when Status = '30' then 'Thirty'
+when Status = '40' then 'Fourty'
+when Status = '50' then 'Fifty'
+else 'Others'
+end as StatusText, count(Status)
+from S group by Status;
++------------+---------------+
+| StatusText | count(Status) |
++------------+---------------+
+| Ten        |             1 |
+| Thirty     |             1 |
+| Twenty     |             1 |
+| Fifty      |             1 |
+| Fourty     |             1 |
+| Others     |             1 |
++------------+---------------+
