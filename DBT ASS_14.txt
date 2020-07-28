@@ -6,8 +6,12 @@ salespeople table: city – San Jose, name – Blanco, comm – NULL, cnum – 1
 
 insert into SALESPEOPLE (City, Sname, Comm, Snum) 
 values ('San Jose', 'Blanco', null, 1100);
+select * from salespeople;
+
         
 2)Write a command that removes all orders from customer Clemens from the Orders table. 
+
+SELECT * FROM orders;
 
 delete from ORDERS
 	where Cnum in 
@@ -23,7 +27,7 @@ select * from ORDERS
 
             
 3)Write a command that increases the rating of all customers in Rome by 100.
-savepoint S1;
+savepoint a;
 
 select * from CUSTOMERS;
 
@@ -33,10 +37,10 @@ update CUSTOMERS
         
 select * from CUSTOMERS;
 
-rollback to savepoint S1;
+rollback to savepoint a;
 
 4)Salesperson Serres has left the company. Assign her customers to Motika.-- 
-savepoint S2;
+savepoint a;
 
 update CUSTOMERS
 	set Snum = 
@@ -45,6 +49,6 @@ update CUSTOMERS
 		where (select Snum from SALESPEOPLE
 					where Sname = 'Motika');
 
-rollback to savepoint S2;
+rollback to savepoint a;
 
 commit work;
