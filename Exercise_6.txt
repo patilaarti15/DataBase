@@ -1,0 +1,59 @@
+-- Display all the Suppliers with the same Status as the supplier, ‘S02’. --
+select * from S
+	where Status = 
+		(select Status from S
+			where Sname = 'S02'); 
+		
+-- Display all the Employees in the same department as the employee ‘HIREN’. --
+select Empname from SEMP
+	where Deptno = 
+		(select Deptno from SEMP
+			where Empname = 'HIREN');
+            
+-- Display all the Parts which have more Weight than all the Red parts. --
+select Pname from P
+	where Weight > 
+		(select Weight from P
+			where Color = 'R');
+            
+-- Display all the Projects going on in the same city as the project ‘J03’. --
+select Jname from j
+	where City = 
+		(select City from j
+			where Jname = 'J03');
+            
+-- Display all the Parts with Weight less than all the Green parts. --
+select Pname, Weight from P
+	where Weight < 
+		(select Weight from P
+			where Color = 'G');
+
+-- Display the name of the Supplier who has sold the maximum Quantity (in one sale). --
+select Sname from S
+	where `S#` = 
+		(select distinct `S#` from Spj
+			where Qty = 
+				(select max(Qty) from Spj));
+                
+/* select max(Qty) from Spj;
+		select `S#` from Spj
+			where Qty = 40; */
+            
+            
+-- Display the name of the Employee with the minimum Salary. --
+select Empname from SEMP
+	where Sal = 
+		(select min(sal) from SEMP);
+        
+-- . Display the name of the Supplier who has sold the maximum overall Quantity (sum of Sales) --
+/* select Sname from S
+	where 
+    
+    
+select Snum from SUPPLIER_PARTS_PROJECT
+	where Qty > */
+    
+-- Display the name of the Department with the maximum number of Employees. --
+	select Deptno, max(no_emp) from
+	 (select Deptno, count(Empno) as no_emp from SEMP
+		group by Deptno) as temp;

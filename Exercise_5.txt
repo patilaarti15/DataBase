@@ -1,0 +1,63 @@
+select count(*) from S;
+
+select count(*) from P;
+
+select count(*) from j;
+
+select count(*) from Spj;
+
+ALTER TABLE SUPPLIER RENAME COLUMN `S#` TO S;
+ALTER TABLE SUPPLIER RENAME COLUMN S TO `S#`;      
+
+ALTER TABLE SUPPLIER_PARTS_PROJECT RENAME COLUMN `S#` TO S; 
+ALTER TABLE SUPPLIER_PARTS_PROJECT RENAME COLUMN S TO `S#`;
+
+-- Display the Supplier name and the Quantity sold --
+select Sname, Qty from S,spj
+	where S.`S#` = Spj.`S#`;
+    
+select * from S;
+    
+-- Display the Part name and Quantity sold. --
+select Pname, Qty from PARTS, Spj
+	where PARTS.`P#` = Spj.`P#`;
+    
+-- Display the Project name and Quantity sold. --
+select Jname, Qty from j, Spj
+	where j.`J#` = Spj.`J#`;  
+    
+-- Display the Supplier name, Part name, Project name and Quantity sold. --
+select Sname, Pname, Jname, Qty from S, P, j, Spj
+	where S.`S#` = Spj.`S#` 
+		and P.`P#` = Spj.`P#` 
+			and P.`J#` = Spj.`J#`;
+            
+-- Display the Supplier name, Supplying Parts to a Project in the same City. --
+select Sname, Pname from S, P, Spj
+	where S.`S#` = Spj.`S#`
+		and P.`P#` = spj.`P#` 
+			and S.City = P.City;
+            
+-- Display the Part name that is ‘Red’ is color, and the Quantity sold. --
+select Pname, Qty from P, Spj
+	where P.`P#` = Spj.`P#` and Color = 'R';
+    
+-- Display all the Quantity sold by Suppliers with the Status = 20. --
+select S.`S#`, Qty from S, Spj
+	where S.`S#` = Spj.`S#` and Status = '20';
+            
+-- Display all the Parts and Quantity with a Weight > 14. --
+select Pname, Qty from P, Spj
+	where P.`P#` = Spj.`P#` and Weight > 14;
+    
+-- Display all the Project names and City, which has bought more than 40 Parts. --
+select Pname, City from P, Spj
+	where P.`P#` = Spj.`P#` and Qty > 40;
+    
+-- Display all the Part names and Quantity sold that have a Weight less than 15. --
+select Pname, Qty from P, Spj
+	where P.`P#` = Spj.`P#` and Weight < 15;
+    
+-- Display all the Employee names and the name of their Departments. --
+select Empname, Deptname from SEMP 
+	left outer join SDEPT on (SEMP.Deptno = SDEPT.Deptno);
