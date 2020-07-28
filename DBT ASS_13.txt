@@ -8,7 +8,17 @@ Rating”, while the others will have the words “Low Rating”.
 select Cname, City, 'High Rating' Rating from CUSTOMERS where Rating >= 200
 union
 select Cname, City, 'Low Rating' Rating from CUSTOMERS where Rating < 200;
-    
+    +----------+---------+-------------+
+| Cname    | City    | Rating      |
++----------+---------+-------------+
+| Giovanni | rome    | High Rating |
+| Liu      | SanJose | High Rating |
+| Grass    | Berlin  | High Rating |
+| Cisneros | SanJose | High Rating |
+| Hoffman  | London  | Low Rating  |
+| Clemens  | London  | Low Rating  |
+| Pereira  | Rome    | Low Rating  |
++----------+---------+-------------+
 
 
 2) Write a command that produces the name and number of each salesperson and
@@ -20,7 +30,12 @@ where SALESPEOPLE.Snum = CUSTOMERS.Snum
 and SALESPEOPLE.Snum = (select Snum from CUSTOMERS
 having count(Snum) > 1) 
 order by Sname, Cname;
-
++-------+------+---------+
+| Sname | Snum | Cname   |
++-------+------+---------+
+| Peel  | 1001 | Clemens |
+| Peel  | 1001 | Hoffman |
++-------+------+---------+
 
 3) Form a union of three queries. Have the first select the snums of all salespeople in
 San Jose; the second, the cnums of all customers in San Jose; and the third the
@@ -29,10 +44,21 @@ but eliminate any redundancies between either of them and the first.
 (Note: in the sample tables as given, there would be no such redundancy. This is
 besides the point.)
 
-select Snum from SALESPEOPLE
-where City = 'San Jose'
+select Snum from SALESPEOPLE where City = 'San Jose'
 union
-select distinct Snum from CUSTOMERS where City = 'San Jose'
+select distinct Cnum from CUSTOMERS where City = 'San Jose'
 union
-select distinct Snum from ORDERS where Odate like '%-10-03' order by Snum;
+select distinct Onum from ORDERS where Odate like '%-10-03' order by Snum;
++------+
+| Snum |
++------+
+| 1100 |
+| 3001 |
+| 3002 |
+| 3003 |
+| 3005 |
+| 3006 |
++------+
+
+
 
