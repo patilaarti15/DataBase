@@ -13,6 +13,7 @@ GROUP BY snum
 HAVING count(snum)>1);    --2 rows created.
 
 SELECT * FROM multicast;
+	
 
 2) Write a command that deletes all customers with no current orders.
 
