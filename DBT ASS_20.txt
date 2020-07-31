@@ -49,6 +49,28 @@ Orders table called Entryorders to insert rows into the Orders table. Create the
 Orders table, so that SYSDATE is automatically inserted for odate if no value is
 given. Then create the Entryorders view so that no values can be given. 
 
+create table ORDERS_3
+(
+	Onum int(5),
+    Amt float(5,2),
+    Odate date default (SYSDATE())
+);
+
+insert into ORDERS_3 (Onum, Amt)
+	values (01, 2);
+    
+select * from ORDERS_3;
+       
+        
+create view ENTRYORDERS
+as
+select * from ORDERS_3
+	where Onum in
+	(select Onum_Temp from
+		(select Onum Onum_Temp from ORDERS_3) as TEMP)
+			with check option;
+        
+alter table ORDERS_3 add PRIMARY KEY (Onum);
 
 
 
